@@ -8,7 +8,7 @@ on:
 permissions:
   contents: write
 
-job:
+jobs:
   build: 
     name: Build and Deploy
     runs-on: ubuntu-latest
@@ -20,7 +20,7 @@ job:
       - name: Python Setup
         uses: actions/setup-python@4
         with:
-          pythons@3.x
+          python-version: '3.x'
 
       - name: Setup MkDocs
         run: pip install mkdocs
