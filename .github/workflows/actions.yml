@@ -20,19 +20,13 @@ job:
       - name: Python Setup
         uses: actions/setup-python@4
         with:
-          pythons@3.12
+          pythons@3.x
 
       - name: Setup MkDocs
         run: pip install mkdocs
 
       - name: Build Site
         run: mkdocs build
-
-      - name: Install SSH key
-        run:
-          install -m 600 /dev/null ~/.ssh/id_rsa
-          echo "${{ secrets.PRIVATE_SSH_KEY }}" > ~/.ssh/id_rsa
-          echo "${{ secrets.HOST_KEYSCAN_RESULT }}" > ~/.ssh/known_hosts    
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
