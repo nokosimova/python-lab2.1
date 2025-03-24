@@ -20,6 +20,9 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: Setup MkDocs
+        run: pip install mkdocs
+
       - name: Build Site with MkDocs
         run: mkdocs build --clean
 
