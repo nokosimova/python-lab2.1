@@ -1,34 +1,30 @@
-name: Build and Deploy My Static Site on Github Pages
+name: Deploy Custom MkDocs Site to GitHub Pages
 
 on:
   push:
     branches:
-      - main
+      - master
 
 permissions:
   contents: write
 
 jobs:
-  build: 
-    name: Build and Deploy
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@3
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
-      - name: Python Setup
-        uses: actions/setup-python@4
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
-      - name: Setup MkDocs
-        run: pip install mkdocs
-
-      - name: Build Site
-        run: mkdocs build
+      - name: Build Site with MkDocs
+        run: mkdocs build --clean
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./site
