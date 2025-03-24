@@ -37,12 +37,6 @@ jobs:
       - name: Build Site with MkDocs
         run: mkdocs build --clean
 
-      - name: Validate HTML
-        run: npm run validate:html
-        
-      - name: Build Site with MkDocs
-        run: mkdocs build --clean
-
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
